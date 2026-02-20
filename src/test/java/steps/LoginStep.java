@@ -1,4 +1,4 @@
-package step;
+package steps;
 
 import io.cucumber.java.en.*;
 import utility.WebAction;
@@ -28,8 +28,6 @@ public class LoginStep {
     @Then("user click on login button")
     public void user_click_on_login_button() throws InterruptedException, IOException {
         WebAction.click("Login","loginButton");
-        Thread.sleep(5000);
-        WebAction.takeScreenshot("src/test/resources/Screenshots");
         System.out.println("Launch");
     }
 }

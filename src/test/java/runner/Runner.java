@@ -4,22 +4,30 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
+
+
 
 @RunWith(Cucumber.class)
 @CucumberOptions (
-        features = "src/test/resources/feature",
-        glue = {"step","hooks"},
+        features = "src/test/resources/features",
+        glue = {"steps","hooks"},
+        tags = "", // any tag you want to execute
         monochrome = true,
-        plugin = {"pretty","html:target/cucumber-reports.html"}
+        plugin = {
+                "pretty",                       // Console-friendly output
+                "html:target/cucumber-reports", // Basic HTML
+                "json:target/cucumber.json",    // For Allure or other tools
+                "junit:target/cucumber.xml",    // CI/CD integration
+                "rerun:target/rerun.txt"        // Failed scenarios rerun
+        }
 )
 public class Runner {
-
     @BeforeClass
     public static void setupEnvironment() {
         // Set environment dynamically
         // we can modify this value before running
         System.setProperty("env", "QA");
+
     }
 
 

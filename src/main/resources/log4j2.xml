@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="runBanner">=== Run started at %d{yyyy-MM-dd HH:mm:ss} ===</Property>
+    </Properties>
+    <Appenders>
+        <File name="FileLogger" fileName="logs/test.log" append="true">
+            <PatternLayout pattern="${runBanner}%n%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n">
+                <!-- Mask any word after "password" in logs -->
+                <RegexReplacement regex="(?i)(password\\s*[:=]\\s*)\\S+" replacement="$1****"/>
+            </PatternLayout>
+        </File>
+        <Console name="ConsoleLogger" target="SYSTEM_OUT">
+            <PatternLayout pattern="${runBanner}%n%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n">
+                <RegexReplacement regex="(?i)(password\\s*[:=]\\s*)\\S+" replacement="$1****"/>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="FileLogger"/>
+            <AppenderRef ref="ConsoleLogger"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,35 +1,35 @@
 package step;
 
-import hooks.Hooks;
 import io.cucumber.java.en.*;
-import pages.LoginPage;
+import utility.WebAction;
 
-import static hooks.Hooks.driver;
-
+import java.io.IOException;
 
 public class LoginStep {
-    private LoginPage loginPage;
 
     @Given("user on login page")
-    public void user_on_login_page() {
-        //Hooks.driver.get("https://practicetestautomation.com/practice-test-login/");
-        loginPage = new LoginPage(driver);
+    public void user_on_login_page() throws InterruptedException {
         System.out.println("Launch");
+        WebAction.getTitle();
     }
 
     @Then("user enter username")
     public void user_enter_username() {
-        loginPage.enterEmail("student");
+        WebAction.sendText("Login","username","student", true);
+        System.out.println("Launch");
     }
 
     @Then("user enter password")
     public void user_enter_password() {
-        loginPage.enterPassword("Password123");
+        WebAction.sendText("Login","password","Password123",true);
+        System.out.println("Launch");
     }
 
     @Then("user click on login button")
-    public void user_click_on_login_button() throws InterruptedException {
-        loginPage.buttonClick();
+    public void user_click_on_login_button() throws InterruptedException, IOException {
+        WebAction.click("Login","loginButton");
         Thread.sleep(5000);
+        WebAction.takeScreenshot("src/test/resources/Screenshots");
+        System.out.println("Launch");
     }
 }

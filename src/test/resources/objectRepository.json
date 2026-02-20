@@ -1,0 +1,7 @@
+{"Login":
+{
+  "username": "name=username",
+  "password": "name=password",
+  "loginButton": "xpath=//button[@id='submit']"
+}
+}

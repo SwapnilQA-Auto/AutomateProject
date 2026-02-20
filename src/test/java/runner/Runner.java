@@ -2,7 +2,9 @@ package runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.WebDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions (
@@ -12,4 +14,13 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","html:target/cucumber-reports.html"}
 )
 public class Runner {
+
+    @BeforeClass
+    public static void setupEnvironment() {
+        // Set environment dynamically
+        // we can modify this value before running
+        System.setProperty("env", "QA");
+    }
+
+
 }

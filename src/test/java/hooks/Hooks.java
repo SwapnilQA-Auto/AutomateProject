@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.OutputType;
@@ -38,7 +39,15 @@ public class Hooks {
         switch (browser) {
             case "chrome":
                 logger.info("Launching Chrome browser");
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                // Check if headless is enabled in config
+                String headless = configReader.getHeadless(); // e.g., "true" or "false"
+                if ("true".equalsIgnoreCase(headless)) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--window-size=1920,1080");
+                    chromeOptions.addArguments("--disable-gpu");
+                }
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
                 logger.info("Launching Firefox browser");

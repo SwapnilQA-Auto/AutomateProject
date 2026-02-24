@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"        // Failed scenarios rerun
         }
 )
-public class Runner {
+public class RunnerTest {
     @BeforeClass
     public static void setupEnvironment() {
         // Set environment dynamically

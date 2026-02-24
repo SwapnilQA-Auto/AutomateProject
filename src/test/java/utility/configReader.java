@@ -37,6 +37,16 @@ public class configReader {
         }
         return browser;
     }
+    public String getHeadless() {
+        String headless = properties.getProperty("headless");
+        if (headless == null || headless.isEmpty()) {
+            System.out.println("Headless property not found in config file! Using false as default.");
+            return "false";
+        } else {
+            System.out.println("Headless from config: " + headless);
+        }
+        return headless;
+    }
     public String getURL(){
         return properties.getProperty("url");
     }

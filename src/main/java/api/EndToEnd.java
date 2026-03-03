@@ -17,8 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static api.Login.loginflow;
-
 public class EndToEnd {
     public static WebDriver driver;
 
@@ -82,6 +80,9 @@ public class EndToEnd {
         actions.sendKeys(Keys.ARROW_DOWN).build().perform();
         actions.sendKeys("abc").build().perform();
         actions.contextClick(name).perform();
+        Alert alert = driver.switchTo().alert();
+        wait.until(ExpectedConditions.visibilityOf(name));
+
     }}
 
 

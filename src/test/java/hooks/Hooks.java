@@ -26,7 +26,6 @@ public class Hooks {
     @Before
     public void setDriver(){
         logger.info("========== Test Execution Started ==========");
-
         // Read environment from system property (default to "QA")
         String env = System.getProperty("env");
         logger.info("Environment selected: " + env);
